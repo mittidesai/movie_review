@@ -1,0 +1,72 @@
+<div class="col-md-2"></div>
+<div class="col-md-8">
+<%= form_for @movie,html: { class: "movieForm" } do |f| %>
+ 
+  <% if @movie.errors.any? %>
+    <div id="error_explanation row">
+      <div class="alert alert-danger col-md-12">
+        <%= pluralize(@movie.errors.count, "error") %> prohibited this movie from being saved:
+            <% @movie.errors.full_messages.each do |msg| %>
+              <p><%= msg %></p>
+            <% end %>
+      </div>
+    </div>
+  <% end %>
+  <div  class="form-group row">
+    <%= f.label :title, class: "col-md-2 mform" %> 
+    <div class="col-md-10">
+        <%= f.text_field :title, class: "form-control", placeholder: "Movie Name" %>
+    </div>
+  </div>
+ 
+  <div class="form-group row">
+    <%= f.label "Release Date", class: "col-md-3 mform" %> 
+    <div class="col-md-9">
+        <%= f.date_field :rdate, class: "form-control" %>
+    </div>
+  </div>
+  
+  <div class="form-group row">
+    <%= f.label :genre, class: "col-md-2 mform" %>
+    <div class="col-md-10">
+        <%= f.text_field :genre, class: "form-control", placeholder: "Movie Genre" %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <%= f.label 'Director', class: "col-md-2 mform" %> 
+    <div class="col-md-10">
+        <%= f.text_field :dname, class: "form-control", placeholder: "Director Name" %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <%= f.label "Lead Actor 1", class: "col-md-3 mform" %> 
+    <div class="col-md-9">
+        <%= f.text_field :actor1, class: "form-control", placeholder: "1st Lead Actor Name" %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <%= f.label "Lead Actor 2", class: "col-md-3 mform" %> 
+    <div class="col-md-9">
+        <%= f.text_field :actor2, class: "form-control", placeholder: "2nd Lead Actor Name" %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <%= f.label :description, class: "col-md-2 mform" %>
+    <div class="col-md-10">
+        <%= f.text_area :description, class: "form-control", placeholder: "Movie Description" %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-4"></div>
+    <div class="col-md-3">
+        <%= f.submit :Submit, html_options={class: "btn btn-xl btn-success"} %>
+    </div>
+    <div class="col-md-4">
+        <%= link_to 'Back to Movie List', movies_path, html_options={class: "btn btn-xl btn-default"} %>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+ </div>
+<% end %>
+</div>
+<div class="col-md-2"></div>
