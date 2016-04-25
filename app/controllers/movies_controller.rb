@@ -34,8 +34,14 @@ class MoviesController < ApplicationController
         @movie.destroy
         redirect_to movies_path
     end
+    def upload
+        uploaded_io = params[:id][:poster]
+        File.open(Rails.root.join('public', 'uploads', 'movies', uploaded_io.original_filename), 'wb') do |file|
+            file.write(uploaded_io.read)
+        end
+    end
     private
         def movie_params
-            params.require(:movie).permit(:title, :rdate, :genre, :dname, :actor1, :actor2, :description)
+            params.require(:movie).permit(:title, :rdate, :genre, :dname, :actor1, :actor2, :description, :poster)
         end
 end
