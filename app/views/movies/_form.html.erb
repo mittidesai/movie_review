@@ -1,6 +1,6 @@
 <div class="col-md-2"></div>
 <div class="col-md-8">
-<%= form_for @movie,html: { class: "movieForm" } do |f| %>
+<%= form_for @movie,html: { class: "movieForm", multipart: true } do |f| %>
  
   <% if @movie.errors.any? %>
     <div id="error_explanation row">
@@ -12,6 +12,12 @@
       </div>
     </div>
   <% end %>
+  <div  class="form-group row">
+      <%= f.label :poster, class: "col-md-2 mform" %>
+      <div class="col-md-10">
+          <%= f.file_field :poster %>
+      </div>
+  </div>
   <div  class="form-group row">
     <%= f.label :title, class: "col-md-2 mform" %> 
     <div class="col-md-10">
