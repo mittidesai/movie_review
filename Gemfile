@@ -29,6 +29,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 #myGems
 #gem "paperclip", "~> 5.0.0.beta1"
 gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
+gem 'devise'
 # Use Unicorn as the app server
 # gem 'unicorn'
 

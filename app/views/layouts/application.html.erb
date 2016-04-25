@@ -27,32 +27,43 @@
           </div>
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <ul class="nav navbar-nav">
+              <ul class="nav navbar-nav navbar-left">
                   <li>
-                      <a href="">
-                          Sing In
-                      </a>
-                  </li>
-                  <li>
-                      <a href="">
-                          Sign Up
-                      </a>
-                  </li>
-                  <li>
-                      <%= form_tag("/", method: :get) do %>
+                      <%= form_tag("/", method: :get, class: "nav navbar-nav navbar-left") do %>
                         <%= text_field_tag 'search', nil, placeholder: "Search using Owl's vision...", class: "navbar-nav" %>
                         <!--%= button_tag 'woot', class:'glyphicon glyphicon-search' %-->
                       <% end %>
                   </li>
-                  <li>
-                      <%= link_to "Admin Owl", "/movies" %>
-                  </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                  <% if user_signed_in? %>
+                    <li>
+                        <%= link_to current_user.email, edit_user_registration_path %>
+                    </li>
+                    <li>
+                        <%= link_to 'Owl Out', destroy_user_session_path, method: :delete %>
+                    </li>
+                  <% else %>
+                    <li>
+                        <%= link_to 'Owl Up', new_user_registration_path %>
+                    </li>
+                    <li>
+                        <%= link_to 'Owl In', new_user_session_path %>
+                    </li>
+                    <li>
+                        <%= link_to "Admin Owl", "/movies" %>
+                    </li>
+                  <% end %>
               </ul>
           </div>
           <!-- /.navbar-collapse -->
       </div>
       <!-- /.container -->
   </nav>
+  <div class="container">
+    <% if notice %><div class="alert alert-info"><%= notice %></div><% end %>
+    <% if alert %><div class="alert alert-warning"><%= alert %></div><% end %>
+  </div>
     <%= yield %>
   </body>
 </html>

@@ -1,5 +1,6 @@
-#require 'paperclip'
 class MoviesController < ApplicationController
+    before_action :authenticate_admin!
+    before_action :authenticate_user!, only: [:show]
     def new
         @movie = Movie.new
     end
