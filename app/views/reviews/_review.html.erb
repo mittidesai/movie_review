@@ -1,0 +1,15 @@
+<p>
+  <strong>Owner:</strong>
+  <%= review.owner %>
+</p>
+ 
+<p>
+  <strong>Review:</strong>
+  <%= review.text %>
+</p>
+
+<p>
+  <%= link_to 'Remove Review', [review.movie, review],
+               method: :delete,
+               data: { confirm: 'Are you sure?' } %>
+</p>
