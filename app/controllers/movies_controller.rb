@@ -1,3 +1,4 @@
+#require 'paperclip'
 class MoviesController < ApplicationController
     def new
         @movie = Movie.new
@@ -10,7 +11,7 @@ class MoviesController < ApplicationController
     def create
         @movie = Movie.new(movie_params)
         if @movie.save
-            redirect_to @movie
+            redirect_to @movie, notice: "The poster #{@movie.title} has been uploaded."
         else
             render 'new'
         end
@@ -32,13 +33,7 @@ class MoviesController < ApplicationController
     def destroy
         @movie = Movie.find(params[:id])
         @movie.destroy
-        redirect_to movies_path
-    end
-    def upload
-        uploaded_io = params[:id][:poster]
-        File.open(Rails.root.join('public', 'uploads', 'movies', uploaded_io.original_filename), 'wb') do |file|
-            file.write(uploaded_io.read)
-        end
+        redirect_to movies_path, notice:  "The poster #{@movie.title} has been deleted."
     end
     private
         def movie_params

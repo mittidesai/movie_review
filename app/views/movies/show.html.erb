@@ -1,3 +1,8 @@
+<% if !flash[:notice].blank? %>
+   <div class = "alert alert-info">
+      <%= flash[:notice] %>
+   </div>
+<% end %>
 <div class="container">
 
         <!-- Portfolio Item Heading -->
@@ -14,7 +19,8 @@
         <div class="row">
 
             <div class="col-md-8">
-                <img class="img-responsive" src="http://placehold.it/750x500" alt="">
+                <!--%= image_tag("1.jpg", size: "500X500", alt: @movie.title, class:"img-responsive") %-->
+                <%= image_tag @movie.poster.url(), alt: @movie.title, class:"img-responsive mPoster" %>
             </div>
 
             <div class="col-md-4">

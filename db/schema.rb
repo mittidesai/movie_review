@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160425005053) do
+ActiveRecord::Schema.define(version: 20160425062444) do
 
   create_table "movies", force: :cascade do |t|
     t.string   "title"
@@ -20,10 +20,14 @@ ActiveRecord::Schema.define(version: 20160425005053) do
     t.string   "dname"
     t.string   "actor1"
     t.string   "actor2"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
     t.text     "description"
     t.string   "poster"
+    t.string   "poster_file_name"
+    t.string   "poster_content_type"
+    t.integer  "poster_file_size"
+    t.datetime "poster_updated_at"
   end
 
   create_table "reviews", force: :cascade do |t|
