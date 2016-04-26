@@ -1,15 +1,28 @@
 <p>
   <strong>Hooter:</strong>
-  <%= review.owner %>
+  <%= review.user_email %>
 </p>
- 
+<p>
+  <strong>Ratings:</strong>
+  <%= review.ratings %>
+</p>
 <p>
   <strong>Review:</strong>
   <%= review.text %>
 </p>
 
 <p>
-  <%= link_to 'Remove Review', [review.movie, review],
+    <% if admin_signed_in? %>
+    <%= link_to 'Remove Review', [review.movie, review],
                method: :delete,
                data: { confirm: 'Are you sure?' } %>
+    <% else %>
+      <% if user_signed_in? %>
+          <% if review.user_email==current_user.email %>
+              <%= link_to 'Remove Review', [review.movie, review],
+                       method: :delete,
+                       data: { confirm: 'Are you sure?' } %>
+            <% end %>
+        <% end %>
+    <% end %>
 </p>
