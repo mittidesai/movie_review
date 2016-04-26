@@ -1,0 +1,46 @@
+<center>
+    <h1>Search Results</h1>
+</center>
+<div class="container">
+    <div class="row text-center admin">
+        <div class="col-md-12 admin">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                  <tr>
+                	<th>Thumbnail</th>
+                    <th>Movie Title</th>
+                    <th>Release Date</th>
+                    <th>Genre</th>
+                	<th>Description</th>
+                	<th>Lead Actors</th>
+                	<th>Supporting Actors</th>
+                	<% if admin_signed_in? %>
+                	    <th colspan=3>Perform Actions</th>
+                	<% else %>
+                	    <th>View Reviews</th>
+                	<% end %>
+                  </tr>
+                     </thead>
+                     <tbody>
+                  <% @results.each do |movie| %>
+                    <tr>
+                      <td><%= image_tag movie.poster.url(:thumb) %></td>
+                	  <!--td><!--%= image_tag("#{movie.id}.jpg", :alt => "No Image") %></td-->
+                	  <td><%= movie.title %></td>
+                      <td><%= movie.rdate %></td>
+                	  <td><%= movie.genre %></td>
+                	  <td><%= movie.description %></td>
+                	  <td><%= movie.actor1 %></td>
+                	  <td><%= movie.actor2 %></td>
+                	  <td><%= link_to 'Show Details', movie_path(movie), html_options={class:"btn btn-info btn-xl"} %></td>
+                	  <% if admin_signed_in? %>
+                	      <td><%= link_to 'Edit Information', edit_movie_path(movie), html_options={class:"btn btn-warning btn-xl"} %></td>
+                    	  <td><%= button_to 'Remove', movie_path(movie), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-xl mbtn" %></td>
+                      <% end %>
+                    </tr>
+                  <% end %>
+                  </tbody>
+                </table>
+        </div>
+    </div>
+</div>
