@@ -1,4 +1,5 @@
 class ReviewsController < ApplicationController
+    before_action :authenticate_user!
     def create
         @movie = Movie.find(params[:movie_id])
         @review = @movie.reviews.create(review_params)
@@ -14,6 +15,6 @@ class ReviewsController < ApplicationController
  
   private
     def review_params
-      params.require(:review).permit(:author, :comment)
+      params.require(:review).permit(:author, :comment, :owner)
     end
 end

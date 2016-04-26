@@ -1,6 +1,5 @@
 class MoviesController < ApplicationController
-    before_action :authenticate_admin!
-    before_action :authenticate_user!, only: [:show]
+    before_action :authenticate_admin!, except: [:show]
     def new
         @movie = Movie.new
     end

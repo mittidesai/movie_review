@@ -1,8 +1,8 @@
 <%= form_for([@movie, @movie.reviews.build]) do |f| %>
   <!--em>* Comment is required to post a review!</em-->
   <p>
-    <%= f.label 'Owl' %><br>
-    <%= f.text_field :owner %>
+    <%= f.label :ratings %><br>
+    <%= f.select :ratings, "<option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>".html_safe, include_blank: false %>
   </p>
   <p>
     <%= f.label 'Review' %><br>
