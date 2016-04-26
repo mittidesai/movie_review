@@ -1,11 +1,7 @@
 <center>
     <h1>Welcome Admin Owl</h1>
 </center>
-<% if !flash[:notice].blank? %>
-   <div class = "alert alert-info">
-      <%= flash[:notice] %>
-   </div>
-<% end %>
+
 <div class="container">
     <div class="row text-center admin">
         <%= link_to 'Add A New Movie', new_movie_path, html_options={class:"btn btn-primary btn-xl"} %>

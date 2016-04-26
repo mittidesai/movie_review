@@ -23,36 +23,46 @@
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
               </button>
-              <%= link_to "Movie Owl", "/", class:"navbar-brand" %>
+              <%= image_tag("owl.png", class:"owl navbar-nav") %>&nbsp;
+              <%= link_to "Movie Owl".html_safe, "/", class:"navbar-brand" %>
           </div>
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav navbar-left">
                   <li>
-                      <%= form_tag("/", method: :get, class: "nav navbar-nav navbar-left") do %>
-                        <%= text_field_tag 'search', nil, placeholder: "Search using Owl's vision...", class: "navbar-nav" %>
+                      <%= form_tag(movies_search_path, method: :get, class: "nav navbar-nav navbar-left") do %>
+                        <%= text_field_tag 'search', params[:search], placeholder: "Search using Owl's vision...", class: "navbar-nav" %>
                         <!--%= button_tag 'woot', class:'glyphicon glyphicon-search' %-->
                       <% end %>
                   </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                  <% if user_signed_in? %>
+                  <% if admin_signed_in? %>
                     <li>
-                        <%= link_to current_user.email, edit_user_registration_path %>
+                        <%= link_to "Movies", url_for("/movies") %>
                     </li>
                     <li>
-                        <%= link_to 'Owl Out', destroy_user_session_path, method: :delete %>
+                        <%= link_to 'Logout', destroy_admin_session_path, method: :delete %>
                     </li>
                   <% else %>
-                    <li>
-                        <%= link_to 'Owl Up', new_user_registration_path %>
-                    </li>
-                    <li>
-                        <%= link_to 'Owl In', new_user_session_path %>
-                    </li>
-                    <li>
-                        <%= link_to "Admin Owl", "/movies" %>
-                    </li>
+                    <% if user_signed_in? %>
+                      <li>
+                          <%= link_to current_user.email, edit_user_registration_path %>
+                      </li>
+                      <li>
+                          <%= link_to 'Owl Out', destroy_user_session_path, method: :delete %>
+                      </li>
+                    <% else %>
+                      <li>
+                          <%= link_to 'Owl Up', new_user_registration_path %>
+                      </li>
+                      <li>
+                          <%= link_to 'Owl In', new_user_session_path %>
+                      </li>
+                      <li>
+                          <%= link_to "Admin Owl", "/movies" %>
+                      </li>
+                    <% end %>
                   <% end %>
               </ul>
           </div>

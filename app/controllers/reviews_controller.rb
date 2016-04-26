@@ -1,7 +1,11 @@
 class ReviewsController < ApplicationController
+    #before_action :authenticate_user!
     def create
+        #@user = User.find(email: current_user.emai)
+        #@review = @user.reviews.create(review_params)
         @movie = Movie.find(params[:movie_id])
         @review = @movie.reviews.create(review_params)
+        @review.update(user_email: current_user.email);
         redirect_to movie_path(@movie)
     end
  
@@ -14,6 +18,6 @@ class ReviewsController < ApplicationController
  
   private
     def review_params
-      params.require(:review).permit(:author, :comment)
+      params.require(:review).permit(:text, :ratings)
     end
 end

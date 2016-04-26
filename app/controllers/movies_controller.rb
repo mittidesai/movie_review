@@ -1,10 +1,11 @@
 class MoviesController < ApplicationController
-    before_action :authenticate_admin!
-    before_action :authenticate_user!, only: [:show]
+    before_action :authenticate_admin!, except: [:show, :search]
     def new
         @movie = Movie.new
     end
-
+    def search
+        @results = Movie.search(params[:search])
+    end
     def index
         @movies = Movie.all
     end

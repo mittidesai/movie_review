@@ -16,3 +16,13 @@
  body{
      margin-top: 70px;
  }
+ .lForm{
+  font-size: 20px;
+  margin-top:  20px;
+ }
+ .lForm .field{
+  padding-top: 25px;
+ }
+ .owl{
+  width: 50px;
+ }

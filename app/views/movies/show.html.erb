@@ -32,7 +32,8 @@
 
         </div>
         <!-- /.row -->
-
+<%= link_to 'Edit', edit_movie_path(@movie) %> |
+<%= link_to 'Back to Movie List', movies_path %>
         <!-- Related Projects Row -->
         <div class="row">
 
@@ -40,9 +41,15 @@
                 <h3 class="page-header">Reviews</h3>
             </div>
             
-            
-            <%= render @movie.reviews %>
-            <%= render 'reviews/form' %>
+            <% if @movie.reviews.count==0 %>
+                <h3>Be the 1st owl to review this movie.</h3>
+            <% else %>
+                <h4>Total Reviews =<%= @movie.reviews.count %></h4>
+                <%= render @movie.reviews %>
+            <% end %>
+            <% if user_signed_in? %>
+                <%= render 'reviews/form' %>
+            <% end %>
             <!--div class="col-sm-3 col-xs-6">
                 <a href="#">
                     <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
@@ -68,8 +75,7 @@
             </div-->
 
         </div>
-<%= link_to 'Edit', edit_movie_path(@movie) %> |
-<%= link_to 'Back to Movie List', movies_path %>
+
 
 <!--h1>Movie Information</h1>
 <table class="table table-striped table-bordered tinfo">

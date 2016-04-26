@@ -3,10 +3,11 @@ Rails.application.routes.draw do
   devise_for :users
   root 'welcome#index'
   get 'welcome/index'
-  
+  get 'movies/search'
   resources :movies do
     resources :reviews
   end
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
