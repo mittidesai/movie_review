@@ -1,111 +1,85 @@
 <div class="container">
-
-        <!-- Portfolio Item Heading -->
-        <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header"><%= @movie.title %>
-                    <small><%= @movie.rdate %></small>
-                </h1>
+    <!-- /.row -->
+    <div class="row">
+        <% if admin_signed_in? %>
+            <div class="col-md-2">
+                <%= link_to 'Back to Movie List', movies_path, class:"btn btn-default" %>
             </div>
+            <div class="col-md-2">
+                <%= link_to 'Edit', edit_movie_path(@movie), class:"btn btn-warning btn-default" %>
+            </div>
+        <% end %>
+    </div>
+    <!-- Portfolio Item Heading -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header"><%= @movie.title %>
+                <small><%= @movie.rdate %></small>
+            </h1>
         </div>
-        <!-- /.row -->
+    </div>
+    <!-- Portfolio Item Row -->
+    <div class="row">
 
-        <!-- Portfolio Item Row -->
-        <div class="row">
-
-            <div class="col-md-8">
-                <!--%= image_tag("1.jpg", size: "500X500", alt: @movie.title, class:"img-responsive") %-->
-                <%= image_tag @movie.poster.url(), alt: @movie.title, class:"img-responsive mPoster" %>
-            </div>
-
-            <div class="col-md-4">
-                <h3>Movie Description</h3>
-                <p><%= @movie.description %></p>
-                <h3>Movie Details</h3>
-                <ul>
-                    <li>Directed by : <%= @movie.dname %></li>
-                    <li>Lead Actors: <%= @movie.actor1 %>, <%= @movie.actor2 %></li>
-                    <!--li>Consectetur</li>
-                    <li>Adipiscing Elit</li-->
-                </ul>
-            </div>
-
+        <div class="col-md-7">
+            <!--%= image_tag("1.jpg", size: "500X500", alt: @movie.title, class:"img-responsive") %-->
+            <%= image_tag @movie.poster.url(), alt: @movie.title, class:"img-responsive mPoster" %>
         </div>
-        <!-- /.row -->
-<%= link_to 'Edit', edit_movie_path(@movie) %> |
-<%= link_to 'Back to Movie List', movies_path %>
-        <!-- Related Projects Row -->
-        <div class="row">
+        <div class="col-md-5">
+            <h3>Movie Description</h3>
+            <p><%= @movie.description %></p>
+            <h3>Movie Cast</h3>
+            <ul>
+                <li>Directed by : <%= @movie.dname %></li>
+                <li>Lead Actor(s): <%= @movie.actor1 %></li>
+                <li>Supporting Actor(s): <%= @movie.actor2 %></li>
+                <!--li>Consectetur</li>
+                <li>Adipiscing Elit</li-->
+            </ul>
+            <h3>Owl Ratings</h3>
+            <p><%= @movie.mratings %> / 5</p>
+            <h3>Total Ratings</h3>
+            <p><%= @movie.reviews.count %></p>
+        </div>
 
-            <div class="col-lg-12">
-                <h3 class="page-header">Reviews</h3>
-            </div>
-            
-            <% if @movie.reviews.count==0 %>
-                <h3>Be the 1st owl to review this movie.</h3>
-            <% else %>
-                <h4>Total Reviews =<%= @movie.reviews.count %></h4>
-                <%= render @movie.reviews %>
+    </div>
+    <!-- /.row -->
+    <!-- Related Projects Row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="page-header">Reviews</h3>
+        </div>
+        <% flag=true %>
+        <% if user_signed_in? %>
+            <% @movie.reviews.each do |review| %>
+                <% if review.user_email==current_user.email %>
+                    <p class="text-info">Thank you for your time to review this movie! You are awesome!</p>
+                    <% flag=false %>
+                <% end %>
             <% end %>
-            <% if user_signed_in? %>
+            <% if flag %>
                 <%= render 'reviews/form' %>
             <% end %>
-            <!--div class="col-sm-3 col-xs-6">
-                <a href="#">
-                    <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
-                </a>
-            </div>
-
-            <div class="col-sm-3 col-xs-6">
-                <a href="#">
-                    <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
-                </a>
-            </div>
-
-            <div class="col-sm-3 col-xs-6">
-                <a href="#">
-                    <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
-                </a>
-            </div>
-
-            <div class="col-sm-3 col-xs-6">
-                <a href="#">
-                    <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
-                </a>
-            </div-->
-
-        </div>
-
-
-<!--h1>Movie Information</h1>
-<table class="table table-striped table-bordered tinfo">
-    <!--tr>
-      <th><strong>Thumbnail:</strong></th>
-      <td><!--%= image_tag("#{@movie.id}.jpg", :alt => "Movie Thumbnail") %></td>
-    </tr-->
-    <!--tr>
-      <th>Title:</th>
-      <td><!--%= @movie.title %></td>
-    </tr>
-     
-    <tr>
-      <th>Release Date:</th>
-      <td><!--%= @movie.year %></td>
-    </tr>
-    
-    <tr>
-      <th>IMDB Rating:</th>
-      <td><!--%= @movie.imdb %></td>
-    </tr>
-    
-    <tr>
-      <th>Description:</th>
-      <td><!--%= @movie.description %></td>
-    </tr>
-</table>
-
-<h2>Reviews</h2>
-
-
-<h2>Add a Review:</h2>
-
+        <% end %>
+        <% if @movie.reviews.count==0 %>
+            <h3 class="text-info">Be the 1st owl to review this movie.</h3>
+        <% else %>
+            <h4>Total Reviews =<%= @movie.reviews.count %></h4>
+            <table class="table table-striped table-bordered">
+              <thead>
+                <tr>
+                  <th>Hooter</th>
+                  <th>Ratings</th>
+                  <th>Review</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                  <% @movie.reviews.first(@movie.reviews.count).each do |review| %>
+                    <%= render review %>
+                  <% end %>
+              </tbody>
+            </table>
+        <% end %>
+    </div>
+</div>

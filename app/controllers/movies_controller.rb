@@ -4,7 +4,11 @@ class MoviesController < ApplicationController
         @movie = Movie.new
     end
     def search
-        @results = Movie.search(params[:search])
+        if params[:search]
+            @results = Movie.search(params[:search])
+        else
+            @results = Movie.all()
+        end
     end
     def index
         @movies = Movie.all
@@ -20,6 +24,7 @@ class MoviesController < ApplicationController
     end
     def show
         @movie = Movie.find(params[:id])
+        @movie.mratings = Movie.joins(:reviews).average("reviews.ratings")
     end
     def edit
         @movie = Movie.find(params[:id])
