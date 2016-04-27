@@ -1,28 +1,25 @@
-<p>
-  <strong>Hooter:</strong>
-  <%= review.user_email %>
-</p>
-<p>
-  <strong>Ratings:</strong>
-  <%= review.ratings %>
-</p>
-<p>
-  <strong>Review:</strong>
-  <%= review.text %>
-</p>
 
-<p>
-    <% if admin_signed_in? %>
-    <%= link_to 'Remove Review', [review.movie, review],
-               method: :delete,
-               data: { confirm: 'Are you sure?' } %>
-    <% else %>
-      <% if user_signed_in? %>
-          <% if review.user_email==current_user.email %>
-              <%= link_to 'Remove Review', [review.movie, review],
-                       method: :delete,
-                       data: { confirm: 'Are you sure?' } %>
-            <% end %>
+    <tr>
+      <td><%= review.user_email %></td>
+      <td><%= review.ratings %></td>
+      <td><%= review.text %></td>
+      <td>
+        <% if admin_signed_in? %>
+          <%= link_to 'Remove Review', [review.movie, review],
+                   method: :delete,
+                   data: { confirm: 'Are you sure?' }, class:"btn btn-danger btn-sm" %>
+        <% else %>
+          <% if user_signed_in? %>
+              <% if review.user_email==current_user.email %>
+                  <%= link_to 'Remove Review', [review.movie, review],
+                           method: :delete,
+                           data: { confirm: 'Are you sure?' }, class:"btn btn-danger btn-sm" %>
+              <% else %>
+                  <a href="" class="btn btn-success btn-sm ub">Upvote</a>
+                  <a href="" class="btn btn-warning btn-sm ub">Downvote</a>
+              <% end %>
+          <% end %>
         <% end %>
-    <% end %>
-</p>
+      </td>
+    </tr>
+  

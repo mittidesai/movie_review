@@ -8,6 +8,7 @@
             <p class="lead">Category Search</p>
             <div class="list-group">
                 <!--a href="#" class="list-group-item">Category 1</a-->
+                <%= button_to 'All Movies', movies_search_path, method: :get, class:"list-group-item btn-lg btn-block" %>
                 <%= button_to 'Action', movies_search_path, name: "search",value: "action", method: :get, class:"list-group-item btn-lg btn-block" %>
                 <%= button_to 'Romance', movies_search_path, name: "search",value: "romance", method: :get, class:"list-group-item btn-lg btn-block" %>
                 <%= button_to 'Horror', movies_search_path, name: "search",value: "horror", method: :get, class:"list-group-item btn-lg btn-block" %>
