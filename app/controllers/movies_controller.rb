@@ -4,7 +4,8 @@ class MoviesController < ApplicationController
         @movie = Movie.new
     end
     def search
-        @results = Movie.search(params[:search])
+        #if params[:search]
+            @results = Movie.search(params[:search])
     end
     def index
         @movies = Movie.all
