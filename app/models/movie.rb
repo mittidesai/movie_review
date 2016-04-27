@@ -5,10 +5,7 @@ class Movie < ActiveRecord::Base
     validates_attachment_content_type :poster, content_type: /\Aimage\/.*\Z/
     def self.search(search)
         if search
-            #where(:all, :conditions => ['title LIKE ?', 'genre LIKE ?', 'dname LIKE ?', 'actor1 LIKE ?', 'actor2 LIKE ?'])
-            where(['lower(title) LIKE ? or lower(genre) LIKE ? or lower(dname) LIKE ? or lower(actor1) LIKE ? or lower(actor2) LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%"])
-        #else
-         #   find(:all)
+            where(['lower(title) LIKE ? or lower(genre) LIKE ? or lower(dname) LIKE ? or lower(actor1) LIKE ? or lower(actor2) LIKE ? or lower(description) LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%"])
         end
     end
 end

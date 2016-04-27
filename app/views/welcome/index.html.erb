@@ -7,9 +7,15 @@
         <div class="col-md-3">
             <p class="lead">Category Search</p>
             <div class="list-group">
-                <a href="#" class="list-group-item">Category 1</a>
-                <a href="#" class="list-group-item">Category 2</a>
-                <a href="#" class="list-group-item">Category 3</a>
+                <!--a href="#" class="list-group-item">Category 1</a-->
+                <%= button_to 'All Movies', movies_search_path, method: :get, class:"list-group-item btn-lg btn-block" %>
+                <%= button_to 'Action', movies_search_path, name: "search",value: "action", method: :get, class:"list-group-item btn-lg btn-block" %>
+                <%= button_to 'Romance', movies_search_path, name: "search",value: "romance", method: :get, class:"list-group-item btn-lg btn-block" %>
+                <%= button_to 'Horror', movies_search_path, name: "search",value: "horror", method: :get, class:"list-group-item btn-lg btn-block" %>
+                <%= button_to 'Animation', movies_search_path, name: "search",value: "animation", method: :get, class:"list-group-item btn-lg btn-block" %>
+                <%= button_to 'Adventure', movies_search_path, name: "search",value: "adventure", method: :get, class:"list-group-item btn-lg btn-block" %>
+                <%= button_to 'Fantacy', movies_search_path, name: "search",value: "fantacy", method: :get, class:"list-group-item btn-lg btn-block" %>
+                <%= button_to 'Drama', movies_search_path, name: "search",value: "drama", method: :get, class:"list-group-item btn-lg btn-block" %>
             </div>
         </div>
         <div class="col-md-9">

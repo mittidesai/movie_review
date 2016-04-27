@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <%= favicon_link_tag 'favicon.ico' %>
     <title>Movie Owl</title>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -24,14 +25,14 @@
                   <span class="icon-bar"></span>
               </button>
               <%= image_tag("owl.png", class:"owl navbar-nav") %>&nbsp;
-              <%= link_to "Movie Owl".html_safe, "/", class:"navbar-brand" %>
+              <%= link_to "Movie Owl - <span class='small'>A hub for movie critiques!</span>".html_safe, "/", class:"navbar-brand mowl" %>
           </div>
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav navbar-left">
                   <li>
                       <%= form_tag(movies_search_path, method: :get, class: "nav navbar-nav navbar-left") do %>
-                        <%= text_field_tag 'search', params[:search], placeholder: "Search using Owl's vision...", class: "navbar-nav" %>
+                        <%= text_field_tag 'search', params[:search], placeholder: "Search with Owl's vision...", class: "navbar-nav" %>
                         <!--%= button_tag 'woot', class:'glyphicon glyphicon-search' %-->
                       <% end %>
                   </li>

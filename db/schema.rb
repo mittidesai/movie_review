@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160426045200) do
+ActiveRecord::Schema.define(version: 20160427184106) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20160426045200) do
     t.string   "poster_content_type"
     t.integer  "poster_file_size"
     t.datetime "poster_updated_at"
+    t.float    "mratings"
   end
 
   create_table "reviews", force: :cascade do |t|
