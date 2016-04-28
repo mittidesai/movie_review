@@ -39,3 +39,8 @@ span.small {
 .mowl {
     margin-left: 5px !important;
 }
+.starHolder{
+    width: 120px !important;
+    text-align: center;
+    color: orange;
+}

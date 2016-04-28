@@ -1,7 +1,13 @@
 
     <tr>
       <td><%= review.user_email %></td>
-      <td><%= review.ratings %></td>
+      <td class="starHolder">
+        <span>
+          <% (1..review.ratings).each do |i| %>
+            <span class="glyphicon glyphicon-star"></span>
+          <% end %>
+        </span>
+      </td>
       <td><%= review.text %></td>
       <td>
         <% if admin_signed_in? %>
