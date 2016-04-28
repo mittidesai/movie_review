@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="row text-center">
+        <h2>My Reviews</h2>
+    </div>
+    <div class="row">
+        <% r = Movie.joins(:reviews).where(["reviews.user_email LIKE ?", current_user.email]) %>
+        <h3>Total Reviews : <%= r.count %></h3>
+        <% i=1 %>
+        <table class="table table-striped table-bordered">
+            <thead>
+                <th>Index</th>
+                <th>Thumbnail</th>
+                <th>Movie Title</th>
+                <th>Review</th>
+                <th colspan=2>Actions</th>
+            </thead>
+            <tbody>
+                <% x=0 %>
+                <% r.each do |movie| %>
+                    <% rr = movie.reviews.where(["user_email LIKE ?", current_user.email]).each do |rrr| %>
+                        <% x = rrr %>
+                    <% end %>
+                   <tr>
+                      <td><%= i %></td>
+                      <td><%= image_tag movie.poster.url(:thumb) %></td>
+                	  <td><%= movie.title %></td>
+                	  <td><%= x.text %></td>
+                      <td><%= link_to 'Show Details', movie_path(movie), html_options={class:"btn btn-info btn-sm"} %></td>
+                      <td><%= link_to 'Remove', movie_review_path(:id => x.id, :movie_id => movie.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm mbtn" %></td>
+                    </tr>
+                <% end %>
+    </div>
+</div>

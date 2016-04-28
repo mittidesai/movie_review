@@ -3,8 +3,7 @@
 <div class="container">
 
     <div class="row">
-
-        <div class="col-md-3">
+        <div class="col-md-2">
             <p class="lead">Category Search</p>
             <div class="list-group">
                 <!--a href="#" class="list-group-item">Category 1</a-->
@@ -13,34 +12,32 @@
                 <%= button_to 'Romance', movies_search_path, name: "search",value: "romance", method: :get, class:"list-group-item btn-lg btn-block" %>
                 <%= button_to 'Horror', movies_search_path, name: "search",value: "horror", method: :get, class:"list-group-item btn-lg btn-block" %>
                 <%= button_to 'Animation', movies_search_path, name: "search",value: "animation", method: :get, class:"list-group-item btn-lg btn-block" %>
-                <%= button_to 'Adventure', movies_search_path, name: "search",value: "adventure", method: :get, class:"list-group-item btn-lg btn-block" %>
-                <%= button_to 'Fantacy', movies_search_path, name: "search",value: "fantacy", method: :get, class:"list-group-item btn-lg btn-block" %>
                 <%= button_to 'Drama', movies_search_path, name: "search",value: "drama", method: :get, class:"list-group-item btn-lg btn-block" %>
             </div>
         </div>
-        <div class="col-md-9">
-            <h3>Latest & Upcoming Movies...</h3>
+        <div class="col-md-10">
+            <h3>Upcoming Movies...</h3>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-10">
             
             <div class="row carousel-holder">
 
                 <div class="col-md-12">
                     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                        <ol class="carousel-indicators">
+                        <!--ol class="carousel-indicators">
                             <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
                             <li data-target="#carousel-example-generic" data-slide-to="1"></li>
                             <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                        </ol>
+                        </ol-->
                         <div class="carousel-inner">
                             <div class="item active">
-                                <img class="slide-image" src="http://placehold.it/800x300" alt="">
+                                <%= image_tag("civilwar.png", class:"slide-image") %>
                             </div>
                             <div class="item">
-                                <img class="slide-image" src="http://placehold.it/800x300" alt="">
+                                <%= image_tag("angrybirds.jpg", class:"slide-image") %>
                             </div>
                             <div class="item">
-                                <img class="slide-image" src="http://placehold.it/800x300" alt="">
+                                <%= image_tag("money.jpg", class:"slide-image") %>
                             </div>
                         </div>
                         <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
@@ -53,7 +50,9 @@
                 </div>
 
             </div>
-
+            <div class="col-md-10">
+                <h3>Latest Movies...</h3>
+            </div>
             <div class="row">
 
                 <div class="col-sm-4 col-lg-4 col-md-4">
