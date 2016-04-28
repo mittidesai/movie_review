@@ -1,5 +1,7 @@
 class WatchlistsController < ApplicationController
     before_action :authenticate_user!
+    def index
+    end
     def create
         @movie = Movie.find(params[:movie_id])
         @user = User.find(params[:user_id])

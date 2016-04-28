@@ -26,14 +26,14 @@
  .owl{
   width: 50px;
  }
-span.small {
+.small {
     font-size: 14px;
     font-style: italic;
 }
 #search{
     margin-top: 12px;
     margin-left: 20px;
-    width: 520px;
+    width: 450px;
     height: 30px;
 }
 .mowl {

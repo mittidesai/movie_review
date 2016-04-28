@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
   get 'welcome/index'
   get 'movies/search'
+  get 'reviews/user'
   resources :movies do
     resources :reviews
   end

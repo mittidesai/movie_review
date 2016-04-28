@@ -8,14 +8,14 @@ class ReviewsController < ApplicationController
         @review.update(user_email: current_user.email);
         redirect_to movie_path(@movie)
     end
- 
     def destroy
         @movie = Movie.find(params[:movie_id])
         @review = @movie.reviews.find(params[:id])
         @review.destroy
         redirect_to movie_path(@movie)
     end
- 
+    def user
+    end
   private
     def review_params
       params.require(:review).permit(:text, :ratings)
