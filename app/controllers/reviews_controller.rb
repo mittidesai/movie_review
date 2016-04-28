@@ -1,4 +1,5 @@
 class ReviewsController < ApplicationController
+    #respond_to :html, :xml, :json
     #before_action :authenticate_user!
     def create
         #@user = User.find(email: current_user.emai)
@@ -15,6 +16,13 @@ class ReviewsController < ApplicationController
         redirect_to movie_path(@movie)
     end
     def user
+       # @movies = Movie.all
+    #    @reviews = []
+    #    @movies.each do |movie|
+    #        temp = movie.reviews.where(["user_email LIKE ?", params[:user_email]])
+    #        @reviews += temp if temp
+    #    end
+    #    respond_with(@reviews)
     end
   private
     def review_params

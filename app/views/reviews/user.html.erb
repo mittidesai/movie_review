@@ -1,1 +1,10 @@
-<h2>My Reviews</h2>
+<div class="container">
+    <div class="row text-center">
+        <h2>My Reviews</h2>
+    </div>
+    <div class="row">
+        <% Movie.joins(:reviews).where(["reviews.user_email LIKE ?", current_user.email]).each do |movie| %>
+            <%= movie.title %>
+        <% end %>
+    </div>
+</div>
