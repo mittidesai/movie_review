@@ -40,7 +40,7 @@
                 <ul class="nav navbar-nav navbar-right">
                   <% if admin_signed_in? %>
                     <li>
-                        <%= link_to "Movies", url_for("/movies") %>
+                        <%= link_to "<span class='glyphicon glyphicon-list-alt'></span> Movies".html_safe, url_for("/movies") %>
                     </li>
                     <li>
                         <%= link_to '<span class="glyphicon glyphicon-off"></span> Logout'.html_safe, destroy_admin_session_path, method: :delete %>
