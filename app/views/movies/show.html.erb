@@ -47,7 +47,7 @@
             </h4>
             <h3>Total Ratings</h3>
             <h4><%= @movie.reviews.count %></h4>
-            <% if !admin_signed_in? %>
+            <% if !admin_signed_in? && user_signed_in? %>
                 <% wl = current_user.watchlists.exists?(['user_id LIKE ? and movie_id LIKE ?', "%#{current_user.id}%", "%#{@movie.id}%"]) %>
                 <% if wl %>
                     <p class="text-info">You have already added this movie into your watchlist.</p>
