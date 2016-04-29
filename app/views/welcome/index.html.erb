@@ -69,6 +69,7 @@
                             <div class="caption">
                                 <%= link_to "<span class='text-lead'>#{latest.title}</span>".html_safe, movie_path(latest), html_options={class:"btn btn-link"} %>
                                 <p>Released on: <%= latest.rdate.to_formatted_s(:long_ordinal) %></p>
+                                <p>Directed By: <%= latest.dname %></p>
                             </div>
                             <div class="ratings">
                                 <p class="pull-right"><%= latest.reviews.count %> reviews</p>

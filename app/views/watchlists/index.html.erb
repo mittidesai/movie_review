@@ -21,7 +21,7 @@
                     <tr>
                       <td><%= image_tag movie.poster.url(:thumb) %></td>
                 	  <td><%= movie.title %></td>
-                      <td><%= movie.rdate %></td>
+                      <td><%= movie.rdate.to_formatted_s(:long_ordinal) %></td>
                 	  <td><%= movie.genre %></td>
                 	  <td><%= movie.description %></td>
                 	  <td><%= link_to 'Show Details', movie_path(movie), html_options={class:"btn btn-info btn-xl"} %></td>
