@@ -24,7 +24,8 @@ class MoviesController < ApplicationController
     end
     def show
         @movie = Movie.find(params[:id])
-        @movie.mratings = Movie.joins(:reviews).average("reviews.ratings")
+        #@movie.mratings = Movie.joins(:reviews).average("reviews.ratings")
+        @movie.mratings = @movie.reviews.average(:ratings)
     end
     def edit
         @movie = Movie.find(params[:id])

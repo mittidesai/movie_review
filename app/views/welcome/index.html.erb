@@ -31,13 +31,19 @@
                         </ol-->
                         <div class="carousel-inner">
                             <div class="item active">
-                                <%= image_tag("civilwar.png", class:"slide-image") %>
+                                <%= link_to "https://www.youtube.com/watch?v=FkTybqcX-Yo", target:"_blank" do %>
+                                    <%= image_tag("civilwar.png", class:"slide-image") %>
+                                <% end %>
                             </div>
                             <div class="item">
-                                <%= image_tag("angrybirds.jpg", class:"slide-image") %>
+                                <%= link_to "https://www.youtube.com/watch?v=1U2DKKqxHgE", target:"_blank" do %>
+                                    <%= image_tag("angrybirds.jpg", class:"slide-image") %>
+                                <% end %>
                             </div>
                             <div class="item">
-                                <%= image_tag("money.jpg", class:"slide-image") %>
+                                <%= link_to "https://www.youtube.com/watch?v=qr_nGAbFkmk", target:"_blank" do %>
+                                    <%= image_tag("money.jpg", class:"slide-image") %>
+                                <% end %>
                             </div>
                         </div>
                         <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
@@ -55,23 +61,23 @@
             </div>
             <div class="row">
                 <% @latests.each do |latest|  %>
-                    <% latest.mratings = Movie.joins(:reviews).average("reviews.ratings") %>
+                    <!--% latest.mratings = latest.reviews.group(:movie_id).average(:ratings) %-->
+                    <% latest.mratings = latest.reviews.average(:ratings) %>
                     <div class="col-sm-4 col-lg-4 col-md-4">
                     <div class="thumbnail">
-                        <%= image_tag("", class:"slide-image") %>
-                        <!--img src="http://placehold.it/320x150" alt=""-->
+                        <%= image_tag latest.poster.url(:medium) %>
                         <div class="caption">
-                            <h4 class="pull-right"><%= latest.rdate %></h4>
-                            <h4>
-                                <a href=""><%= latest.title %></a>
-                            </h4>
-                            <p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
+                            <%= link_to "<span class='text-lead'>#{latest.title}</span>".html_safe, movie_path(latest), html_options={class:"btn btn-link"} %>
+                            <p>Released on: <%= latest.rdate.to_formatted_s(:long_ordinal) %></p>
                         </div>
                         <div class="ratings">
-                            <p class="pull-right">15 reviews</p>
+                            <p class="pull-right"><%= latest.reviews.count %> reviews</p>
                             <p>
                                 <% (1..latest.mratings).each do |i| %>
                                     <span class="glyphicon glyphicon-star"></span>
+                                <% end %>
+                                <% (1..(5-latest.mratings)).each do |i| %>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
                                 <% end %>
                             </p>
                         </div>
