@@ -26,6 +26,8 @@
             <%= image_tag @movie.poster.url(), alt: @movie.title, class:"img-responsive mPoster" %>
         </div>
         <div class="col-md-5">
+            <h3>Movie Genres</h3>
+            <p><%= @movie.genre %></p>
             <h3>Movie Description</h3>
             <p><%= @movie.description %></p>
             <h3>Movie Cast</h3>
@@ -47,7 +49,7 @@
             </h4>
             <h3>Total Ratings</h3>
             <h4><%= @movie.reviews.count %></h4>
-            <% if !admin_signed_in? %>
+            <% if !admin_signed_in? && user_signed_in? %>
                 <% wl = current_user.watchlists.exists?(['user_id LIKE ? and movie_id LIKE ?', "%#{current_user.id}%", "%#{@movie.id}%"]) %>
                 <% if wl %>
                     <p class="text-info">You have already added this movie into your watchlist.</p>
@@ -79,7 +81,7 @@
         <% if @movie.reviews.count==0 %>
             <h3 class="text-info">Be the 1st owl to hoot about this movie.</h3>
         <% else %>
-            <h4>Total Reviews = <%= @movie.reviews.count %></h4>
+            <h4>Total Reviews : <%= @movie.reviews.count %></h4>
             <table class="table table-striped table-bordered">
               <thead>
                 <tr>

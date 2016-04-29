@@ -17,14 +17,15 @@ class MoviesController < ApplicationController
     def create
         @movie = Movie.new(movie_params)
         if @movie.save
-            redirect_to @movie, notice: "The poster #{@movie.title} has been uploaded."
+            redirect_to @movie, notice: "The movie has been created."
         else
             render 'new'
         end
     end
     def show
         @movie = Movie.find(params[:id])
-        @movie.mratings = Movie.joins(:reviews).average("reviews.ratings")
+        #@movie.mratings = Movie.joins(:reviews).average("reviews.ratings")
+        @movie.mratings = @movie.reviews.average(:ratings)
     end
     def edit
         @movie = Movie.find(params[:id])
@@ -40,7 +41,7 @@ class MoviesController < ApplicationController
     def destroy
         @movie = Movie.find(params[:id])
         @movie.destroy
-        redirect_to movies_path, notice:  "The poster #{@movie.title} has been deleted."
+        redirect_to movies_path, notice:  "The poster and #{@movie.title} has been deleted."
     end
     private
         def movie_params

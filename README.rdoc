@@ -1,7 +1,7 @@
 Gems Install:
 1) sudo apt-get install imagemagick -y
-2) Install paperclip https://github.com/thoughtbot/paperclip
-
+2) bin/rake db:migrate
+3) 
 == README
 
 This README would normally document whatever steps are necessary to get the
