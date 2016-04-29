@@ -10,4 +10,7 @@ class Movie < ActiveRecord::Base
             where(['lower(title) LIKE ? or lower(genre) LIKE ? or lower(dname) LIKE ? or lower(actor1) LIKE ? or lower(actor2) LIKE ? or lower(description) LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%"])
         end
     end
+    def self.latest
+        @latests = Movie.order(rdate: :desc).limit(6)
+    end
 end
