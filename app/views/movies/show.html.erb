@@ -26,6 +26,8 @@
             <%= image_tag @movie.poster.url(), alt: @movie.title, class:"img-responsive mPoster" %>
         </div>
         <div class="col-md-5">
+            <h3>Movie Genres</h3>
+            <p><%= @movie.genre %></p>
             <h3>Movie Description</h3>
             <p><%= @movie.description %></p>
             <h3>Movie Cast</h3>
@@ -79,7 +81,7 @@
         <% if @movie.reviews.count==0 %>
             <h3 class="text-info">Be the 1st owl to hoot about this movie.</h3>
         <% else %>
-            <h4>Total Reviews = <%= @movie.reviews.count %></h4>
+            <h4>Total Reviews : <%= @movie.reviews.count %></h4>
             <table class="table table-striped table-bordered">
               <thead>
                 <tr>

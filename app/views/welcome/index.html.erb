@@ -62,29 +62,28 @@
             <div class="row">
                 <% @latests.each do |latest|  %>
                     <!--% latest.mratings = latest.reviews.group(:movie_id).average(:ratings) %-->
-                    <% latest.mratings = latest.reviews.average(:ratings) %>
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                    <div class="thumbnail">
-                        <%= image_tag latest.poster.url(:medium) %>
-                        <div class="caption">
-                            <%= link_to "<span class='text-lead'>#{latest.title}</span>".html_safe, movie_path(latest), html_options={class:"btn btn-link"} %>
-                            <p>Released on: <%= latest.rdate.to_formatted_s(:long_ordinal) %></p>
-                        </div>
-                        <div class="ratings">
-                            <p class="pull-right"><%= latest.reviews.count %> reviews</p>
-                            <p>
-                                <% (1..latest.mratings).each do |i| %>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                <% end %>
-                                <% (1..(5-latest.mratings)).each do |i| %>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                <% end %>
-                            </p>
+                    <% x = latest.reviews.average(:ratings) %>
+                    <div class="col-sm-4 col-lg-4 col-md-4 latest">
+                        <div class="thumbnail">
+                            <%= image_tag latest.poster.url(:medium) %>
+                            <div class="caption">
+                                <%= link_to "<span class='text-lead'>#{latest.title}</span>".html_safe, movie_path(latest), html_options={class:"btn btn-link"} %>
+                                <p>Released on: <%= latest.rdate.to_formatted_s(:long_ordinal) %></p>
+                            </div>
+                            <div class="ratings">
+                                <p class="pull-right"><%= latest.reviews.count %> reviews</p>
+                                <p>
+                                    <% (1..(x.to_i)).each do |i| %>
+                                        <span class="glyphicon glyphicon-star"></span>
+                                    <% end %>
+                                    <% (1..(5-x.to_i)).each do |i| %>
+                                        <span class="glyphicon glyphicon-star-empty"></span>
+                                    <% end %>
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
                 <% end %>
-                
             </div>
         </div>
     </div>
