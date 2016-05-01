@@ -1,32 +1,18 @@
-Gems Install:
-1) sudo apt-get install imagemagick -y
-2) bin/rake db:migrate
-3) 
-== README
+System Dependencies:
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* bundle install
 
-Things you may want to cover:
+* Install imagemagick
+    for ubuntu: sudo apt-get install imagemagick -y
 
-* Ruby version
+* Ruby version: ruby 2.3.0p0 (2015-12-25 revision 53290) [x86_64-linux]
 
-* System dependencies
+* Rails Version: 4.2.5
 
-* Configuration
+* Configuration: bin/rake routes
 
-* Database creation
+* Database: sqlite3
 
-* Database initialization
+* Database initialization : bin/rails db:migrate
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+* Gems: please refer to the Gemfile

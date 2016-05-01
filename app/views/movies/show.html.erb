@@ -14,7 +14,7 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header"><%= @movie.title %>
-                <small><%= @movie.rdate %></small>
+                <small><%= @movie.rdate.to_formatted_s(:long_ordinal) %></small>
             </h1>
         </div>
     </div>

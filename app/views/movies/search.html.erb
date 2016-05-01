@@ -12,7 +12,7 @@
                     <th>Movie Title</th>
                     <th>Release Date</th>
                     <th>Genre</th>
-                	<th>Description</th>
+                	<th>Director</th>
                 	<th>Lead Actors</th>
                 	<th>Supporting Actors</th>
                 	<% if admin_signed_in? %>
@@ -27,9 +27,9 @@
                     <tr>
                       <td><%= image_tag movie.poster.url(:thumb) %></td>
                 	  <td><%= movie.title %></td>
-                      <td><%= movie.rdate %></td>
+                      <td><%= movie.rdate.to_formatted_s(:long_ordinal) %></td>
                 	  <td><%= movie.genre %></td>
-                	  <td><%= movie.description %></td>
+                	  <td><%= movie.dname %></td>
                 	  <td><%= movie.actor1 %></td>
                 	  <td><%= movie.actor2 %></td>
                 	  <td><%= link_to 'Show Details', movie_path(movie), html_options={class:"btn btn-info btn-xl"} %></td>
